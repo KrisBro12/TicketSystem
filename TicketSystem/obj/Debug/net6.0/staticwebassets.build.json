@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "JDCqLNbgyLOUh3u+DjCFpvr7l8REk6l7+BU+9fF5HrM=",
+  "Hash": "NeW1t4S0xkx+0f78o6RhtPKppzRtkB+Ber3boOC4ABc=",
   "Source": "TicketSystem",
   "BasePath": "_content/TicketSystem",
   "Mode": "Default",
@@ -255,12 +255,12 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\favicon.svg",
       "SourceId": "TicketSystem",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\",
       "BasePath": "_content/TicketSystem",
-      "RelativePath": "favicon.ico",
+      "RelativePath": "favicon.svg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -269,7 +269,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\favicon.ico"
+      "OriginalItemSpec": "wwwroot\\favicon.svg"
+    },
+    {
+      "Identity": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\icon.svg",
+      "SourceId": "TicketSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\",
+      "BasePath": "_content/TicketSystem",
+      "RelativePath": "icon.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\icon.svg"
     }
   ]
 }

@@ -2,21 +2,39 @@
 
 @if (NavigationManager != null)
 {
-<div class="navbar">
-    <div class="navbar-brand">Employee Ticket System</div>
-    <div class="navbar-links">
-        <NavLink href="" Match="NavLinkMatch.All">
-            Home
-        </NavLink>
-        <NavLink href="Department">
-            Department
-        </NavLink>
-        <NavLink href="Employee">
-            Employee
-        </NavLink>
-        <NavLink href="Task">
-            Task
-        </NavLink>
+    
+    <div class="navbar">
+        <div class="navbar-brand">Employee Ticket System</div>
+        <div class="navbar-links">
+            <a href="" Match="NavLinkMatch.All">Home</a>
+            <a href="Department">Department</a>
+            <a href="Employee">Employee</a>
+            <a href="Task">Task</a>
+        </div>
     </div>
-</div>
+
+    <style>
+        .navbar {
+            background-color: #333; /* Setting a background color for the navbar */
+            color: white; /* Making the text white */
+            padding: 10px; /* Adding some padding for better spacing */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 1.5em; /* Adjusting font size */
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 10px; /* Adding some space between the links */
+        }
+
+            .navbar-links a {
+                color: white; /* Making the link text white */
+                text-decoration: none; /* Removing the default underline on links */
+            }
+    </style>
 }
