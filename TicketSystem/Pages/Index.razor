@@ -1,0 +1,70 @@
+﻿@page "/"
+@inject Microsoft.AspNetCore.Components.NavigationManager NavigationManager
+
+<PageTitle>Index</PageTitle>
+
+<style>
+    body{
+        background-color: #222;
+    }
+
+    .card-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 50px;
+        height: 100vh; /* 100% of the viewport height */
+    }
+
+    .card {
+        width: 350px;
+        height: 300px;
+        margin: 20px;
+        border: 1px solid #000000;
+        border-radius: 10px;
+        text-align: center;
+        padding: 20px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    h1{
+        color: #FFFFFF;
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+</style>
+
+<h1>Choose a table you would like to work with</h1>
+<div class="card-container">
+    <div class="card">
+        <h3 class="card-title">Department Table</h3>
+        <h5 class="card-text">Initialize and edit the departments.</h5>
+        <a class="btn btn-primary" href="Department">Next</a>
+    </div>
+
+    <div class="card">
+        <h3 class="card-title">Employee Table</h3>
+        <h5 class="card-text">Initialize and edit employee's name, lastname, department id and skills.</h5>
+        <a class="btn btn-primary" href="Employee">Next</a>
+    </div>
+
+    <div class="card">
+        <h3 class="card-title">Tasks Table</h3>
+        <h5 class="card-text">Initialize and edit task's name, description, employee id and date.</h5>
+        <a class="btn btn-primary" href="Task">Next</a>
+    </div>
+</div>
+
+@code{
+    
+    private void NavigateToPage(string page)
+    {
+        string nextPageUrl = $"/{page}";
+
+        NavigationManager.NavigateTo(nextPageUrl);
+    }
+}

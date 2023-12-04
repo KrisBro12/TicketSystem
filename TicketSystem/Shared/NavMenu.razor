@@ -1,0 +1,22 @@
+﻿@inject NavigationManager NavigationManager
+
+@if (NavigationManager != null)
+{
+<div class="navbar">
+    <div class="navbar-brand">Employee Ticket System</div>
+    <div class="navbar-links">
+        <NavLink href="" Match="NavLinkMatch.All">
+            Home
+        </NavLink>
+        <NavLink href="Department">
+            Department
+        </NavLink>
+        <NavLink href="Employee">
+            Employee
+        </NavLink>
+        <NavLink href="Task">
+            Task
+        </NavLink>
+    </div>
+</div>
+}

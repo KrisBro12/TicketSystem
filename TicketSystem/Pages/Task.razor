@@ -1,0 +1,292 @@
+﻿@page "/Task"
+@using TicketSystem.Services
+@using TicketSystem.Data.Entity
+@inject IEmployeeService EmployeeService
+@inject ITaskService TaskService
+
+
+<PageTitle>Task Table</PageTitle>
+
+<div class="chat-container">
+    <div class="chat-bubble">
+
+        <h1>Task Table</h1>
+
+        <!-- Print out the table -->
+        @if (tasks == null)
+        {
+            <p>Loading...</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Task</th>
+                        <th>Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var task in tasks)
+                    {
+                        <tr>
+                            <td><button class="btn-table" @onclick="(()=> SetUpdateTask(task.Id))">Edit</button></td>
+                            <td>@task.name</td>
+                            <td>@task.description</td>
+                            <td>@task.employee.name</td>
+                            <td>@task.created_date.ToString("dd/MM/yyyy")</td>
+                            <td><button class="btn-table" @onclick="(()=> DeleteTask(task.Id))">❌</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+        <!-- Add Form -->
+        <div class="mb-3">
+            <h5>Add New Task</h5>
+            <div class="form-group">
+                <label for="newTaskName">Name:</label>
+                <input type="text" class="form-control" id="newTaskName" @bind="newTaskName" />
+            </div>
+            <div class="form-group">
+                <label for="newTaskDescription">Description:</label>
+                <input type="text" class="form-control" id="newTaskDescription" @bind="newTaskDescription" />
+            </div>
+            <div class="form-group">
+                <label for="newTaskEmployee">Employee:</label>
+                <select class="form-control" id="newTaskEmployee" @bind="newTaskEmployee">
+                    @foreach (var employee in employees)
+                    {
+                        <option value="@employee.Id">@employee.name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="newTaskDate">Date:</label>
+                <input type="date" class="form-control" id="newTaskDate" @bind="newTaskDate" />
+            </div>
+            <button class="btn btn-primary" @onclick="AddNewTask">Add Task</button>
+        </div>
+
+        <!-- Update Form -->
+        <div class="mb-3">
+            <h5>Update Task</h5>
+
+            <div class="form-group">
+                <label for="updateTaskName">New Name:</label>
+                <input type="text" class="form-control" id="updateTaskName" @bind="tempTask.name" />
+            </div>
+            <div class="form-group">
+                <label for="updateTaskDescription">New Description:</label>
+                <input type="text" class="form-control" id="updateTaskDescription" @bind="tempTask.description" />
+            </div>
+            <div class="form-group">
+                <label for="updateTaskEmployee">New Employee:</label>
+                <select class="form-control" id="updateTaskEmployee" @bind="tempTask.employeeId">
+                    @foreach (var employee in employees)
+                    {
+                        <option value="@employee.Id">@employee.name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="updateTaskDate">New Date:</label>
+                <input type="date" class="form-control" id="updateTaskDate" @bind="tempTask.created_date" />
+            </div>
+            <button class="btn btn-warning" @onclick="UpdateTask">Update Task</button>
+        </div>
+
+    </div>
+</div>
+
+
+<style>
+
+    body {
+        background-color: #222;
+        margin: 0;
+        padding: 0;
+    }
+
+    .btn-table {
+        border: 1px solid #f5f5f5;
+        border-radius: 10px; /* Adjusted border-radius */
+        background-color: #f5f5f5;
+        padding: 10px 20px; /* Adjust padding as needed */
+        transition: all 0.3s ease; /* Smooth transition effect */
+    }
+
+        .btn-table:hover {
+            border: 1px solid #777;
+            border-radius: 10px; /* Adjusted border-radius on hover */
+            background-color: #ddd; /* Change background color on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            transform: scale(1.05); /* Slightly scale up on hover */
+            opacity: 0.9;
+        }
+
+
+    .chat-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-top: 5px solid #555;
+    }
+
+    .chat-bubble {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+    }
+
+    .table {
+        width: 100%;
+        margin-top: 30px;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+        .table th, .table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #999;
+        }
+
+        .table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+    .mb-3 {
+        margin-bottom: 30px;
+        border-top: 2px solid #ddd;
+        padding-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .input {
+        width: 100%;
+        padding: 12px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        color: #fff;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+
+</style>
+
+@code {
+
+    List<Data.Entity.Task> tasks;
+    List<Data.Entity.Employee> employees;
+    Data.Entity.Task tempTask;
+    string newTaskName;
+    string newTaskDescription;
+    int newTaskEmployee;
+    DateTime newTaskDate;
+
+    string updateTaskId;
+    string updateTaskName;
+    string updateTaskDescription;
+    int updateTaskEmployee;
+    DateTime updateTaskDate;
+
+    string deleteTaskId;
+
+    protected override void OnInitialized()
+    {
+        tempTask = new Data.Entity.Task();
+        tempTask.created_date = DateTime.Now;
+        newTaskDate = DateTime.Now;
+        tasks = TaskService.GetAllTasks();
+        employees = EmployeeService.GetAllEmployees();
+    }
+
+    private void SetUpdateTask(int id)
+    {
+        tempTask = TaskService.GetTaskById(id);
+    }
+    private void AddNewTask()
+    {
+        var newTask = new TicketSystem.Data.Entity.Task
+            {
+                name = newTaskName,
+                description = newTaskDescription,
+                employeeId = newTaskEmployee,
+                created_date = newTaskDate
+            };
+
+        TaskService.AddTask(newTask);
+        tasks = TaskService.GetAllTasks();
+
+        newTaskName = string.Empty;
+        newTaskDescription = string.Empty;
+        newTaskEmployee = 0;
+        newTaskDate = DateTime.Now;
+    }
+
+    private void UpdateTask()
+    {
+        TaskService.UpdateTask(tempTask);
+        tasks = TaskService.GetAllTasks();
+        tempTask = new Data.Entity.Task();
+    }
+
+    private void DeleteTask(int id)
+    {
+        TaskService.DeleteTask(id);
+
+        tasks = TaskService.GetAllTasks();
+
+        deleteTaskId = string.Empty;
+    }
+}

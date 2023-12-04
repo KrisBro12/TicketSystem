@@ -1,0 +1,221 @@
+﻿@page "/Department"
+@using TicketSystem.Services
+@using TicketSystem.Data.Entity
+@inject IDepartmentService DepartmentService
+
+<PageTitle>Department Table</PageTitle>
+
+<div class="chat-container">
+    <div class="chat-bubble">
+
+        <h1>Department Table</h1>
+
+        <!-- Print out the table -->
+        @if (departments == null)
+        {
+            <p>Loading...</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var department in departments)
+                    {
+                        <tr>
+                            <td><button @onclick="(()=> SetUpdateDepartment(department.Id))">Edit</button></td>
+                            <td>@department.name</td>
+                            <td><button @onclick="(()=> DeleteDepartment(department.Id))">❌</button></td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+        <!-- Add Form -->
+        <div class="mb-3">
+            <h5>Add New Department</h5>
+            <div class="form-group">
+                <label for="newDepartmentName">Department Name:</label>
+                <input type="text" class="form-control" id="newDepartmentName" @bind="newDepartmentName" />
+            </div>
+            <button class="btn btn-primary" @onclick="AddNewDepartment">Add Department</button>
+        </div>
+
+        <!-- Update Form -->
+        <div class="mb-3">
+            <h5>Update Department</h5>
+
+            <div class="form-group">
+                <label for="updateDepartmentName">New Department Name:</label>
+                <input type="text" class="form-control" id="updateDepartmentName" @bind="tempDepartment.name" />
+            </div>
+            <button class="btn btn-warning" @onclick="UpdateDepartment">Update Department</button>
+        </div>
+        
+    </div>
+</div>
+
+
+<style>
+
+    body {
+        background-color: #222;
+        margin: 0;
+        padding: 0;
+    }
+
+    .chat-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-top: 5px solid #555;
+    }
+
+    .chat-bubble {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+    }
+
+    .table {
+        width: 100%;
+        margin-top: 30px;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+        .table th, .table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #999;
+        }
+
+        .table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+    .mb-3 {
+        margin-bottom: 30px;
+        border-top: 2px solid #ddd;
+        padding-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .input {
+        width: 100%;
+        padding: 12px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        color: #fff;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+
+</style>
+
+@code {
+
+    List<TicketSystem.Data.Entity.Department> departments;
+    Data.Entity.Department tempDepartment;
+    string newDepartmentName;
+    string updateDepartmentId;
+    string updateDepartmentName;
+    string deleteDepartmentId;
+
+    <!-- Read table -->
+    protected override void OnInitialized()
+    {
+        tempDepartment = new Data.Entity.Department();
+        departments = DepartmentService.GetAllDepartments();
+    }
+
+    <!-- Create new row in the table -->
+    private void AddNewDepartment()
+    {
+        var newDepartment = new TicketSystem.Data.Entity.Department
+            {
+                name = newDepartmentName,
+            };
+
+        DepartmentService.AddDepartment(newDepartment);
+        departments = DepartmentService.GetAllDepartments();
+
+        newDepartmentName = string.Empty;
+    }
+
+    <!-- Update exicting row in the table -->
+
+    private void SetUpdateDepartment(int id)
+    {
+        tempDepartment = DepartmentService.GetDepartmentById(id);
+    }
+
+    private void UpdateDepartment()
+    {
+        DepartmentService.UpdateDepartment(tempDepartment);
+        departments = DepartmentService.GetAllDepartments();
+        tempDepartment = new Data.Entity.Department();
+    }
+
+    <!-- Delete exicting row in the table -->
+    private void DeleteDepartment(int id)
+    {
+        DepartmentService.DeleteDepartment(id);
+
+        departments = DepartmentService.GetAllDepartments();
+
+        deleteDepartmentId = string.Empty;
+    }
+}
