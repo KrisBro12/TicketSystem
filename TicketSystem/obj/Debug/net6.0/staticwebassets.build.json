@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NeW1t4S0xkx+0f78o6RhtPKppzRtkB+Ber3boOC4ABc=",
+  "Hash": "5Q51pTSboqo9Tr9rLkwV0t0fTMTxlz55EyfeY0nyzZQ=",
   "Source": "TicketSystem",
   "BasePath": "_content/TicketSystem",
   "Mode": "Default",
@@ -255,12 +255,12 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\favicon.svg",
+      "Identity": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\icon.png",
       "SourceId": "TicketSystem",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\",
       "BasePath": "_content/TicketSystem",
-      "RelativePath": "favicon.svg",
+      "RelativePath": "icon.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -269,7 +269,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\favicon.svg"
+      "OriginalItemSpec": "wwwroot\\icon.png"
     },
     {
       "Identity": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\icon.svg",
@@ -287,6 +287,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\icon.svg"
+    },
+    {
+      "Identity": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\icon1.png",
+      "SourceId": "TicketSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\",
+      "BasePath": "_content/TicketSystem",
+      "RelativePath": "icon1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\icon1.png"
     }
   ]
 }

@@ -53,12 +53,16 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\favicon.svg",
-      "PackagePath": "staticwebassets\\favicon.svg"
+      "Id": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\icon.png",
+      "PackagePath": "staticwebassets\\icon.png"
     },
     {
       "Id": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\icon.svg",
       "PackagePath": "staticwebassets\\icon.svg"
+    },
+    {
+      "Id": "C:\\Users\\krisa\\source\\repos\\TicketSystem\\TicketSystem\\wwwroot\\icon1.png",
+      "PackagePath": "staticwebassets\\icon1.png"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.TicketSystem.Microsoft.AspNetCore.StaticWebAssets.props",
